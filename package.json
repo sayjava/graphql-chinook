@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@skimah/api": "^0.3.1",
+    "@skimah/ds-csv": "^0.1.0",
     "@skimah/ds-json": "^0.1.0",
-    "@skimah/ds-sql": "^1.0.1",
     "apollo-server-express": "^2.15.1",
     "express": "^4.17.1",
     "graphql": "^15.3.0",

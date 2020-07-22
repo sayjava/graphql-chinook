@@ -1,25 +1,43 @@
-type Customer @datasource(name: "chinook") {
-  id: ID @named(as: "CustomerId")
-  firstName: String @named(as: "FirstName")
-  lastName: String @named(as: "LastName")
-  company: String @named(as: "Company")
-  email: String @named(as: "Email")
-  country: String @named(as: "Country")
+# type Customer @datasource(name: "chinook") {
+#   id: ID @named(as: "CustomerId")
+#   firstName: String @named(as: "FirstName")
+#   lastName: String @named(as: "LastName")
+#   company: String @named(as: "Company")
+#   email: String @named(as: "Email")
+#   country: String @named(as: "Country")
 
-  supportRep: Employee! @relation @named(as: "SupportRepId")
+#   supportRep: Employee! @relation @named(as: "SupportRepId")
+# }
+
+# type Employee @datasource(name: "chinook") {
+#   id: ID @named(as: "EmployeeId")
+#   firstName: String @named(as: "FirstName")
+#   lastName: String @named(as: "LastName")
+#   title: String @named(as: "Title")
+#   email: String @named(as: "Email")
+
+#   supporting: [Customer] @relation
+# }
+
+# type Album @datasource(name: "chinook") {
+#   id: ID @named(as: "AlbumId")
+#   title: String @named(as: "Title")
+# }
+
+type Country @readonly {
+  id: ID @named(as: "LOCATION")
+  name: String @named(as: "Country")
+
+  singleHit: [Forecast] @relation
 }
 
-type Employee @datasource(name: "chinook") {
-  id: ID @named(as: "EmployeeId")
-  firstName: String @named(as: "FirstName")
-  lastName: String @named(as: "LastName")
-  title: String @named(as: "Title")
-  email: String @named(as: "Email")
+type Forecast @readonly @datasource(name: "singleHit") {
+  id: ID @named(as: "LOCATION")
+  code: String @named(as: "VARIABLE")
+  description: String @named(as: "Variable")
+  frequency: String @named(as: "Frequency")
+  time: String @named(as: "TIME")
+  value: Float @named(as: "Value")
 
-  supporting: [Customer] @relation
-}
-
-type Album @datasource(name: "chinook") {
-  id: ID @named(as: "AlbumId")
-  title: String @named(as: "Title")
+  country: Country @relation @named(as: "LOCATION")
 }
