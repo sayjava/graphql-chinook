@@ -12,6 +12,11 @@ export const create = async () => {
   const server = new ApolloServer({
     schema,
     playground: true,
+    debug: true,
+    formatError: (e) => {
+      console.error(e.extensions);
+      return e as any;
+    },
   });
 
   server.applyMiddleware({ app });
@@ -27,6 +32,6 @@ export const create = async () => {
 };
 
 create().then((s) => {
-  console.log(`Server started at ${port}`);
+  console.log(`Server started at http://localhost:${port}`);
   s.start();
 });
