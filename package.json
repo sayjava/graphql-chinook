@@ -10,16 +10,18 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@skimah/api": "^0.3.1",
-    "@skimah/ds-csv": "^0.1.0",
-    "@skimah/ds-json": "^0.1.0",
-    "apollo-server-express": "^2.15.1",
+    "@skimah/api": "^0.3.2",
+    "@skimah/ds-csv": "^0.1.1",
+    "@skimah/ds-json": "^0.1.1",
+    "ant-design-vue": "^1.6.4",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "element-ui": "^2.13.2",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
-    "sqlite3": "^5.0.0"
+    "nuxt": "^2.13.3"
   },
   "devDependencies": {
-    "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.51",
     "typescript": "^3.9.6"
   }
