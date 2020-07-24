@@ -10,16 +10,18 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@skimah/api": "^0.3.2",
+    "@skimah/api": "^0.3.3",
     "@skimah/ds-csv": "^0.1.1",
     "@skimah/ds-json": "^0.1.1",
+    "@skimah/ds-sql": "^1.0.2",
     "ant-design-vue": "^1.6.4",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
-    "nuxt": "^2.13.3"
+    "nuxt": "^2.13.3",
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "ts-node-dev": "^1.0.0-pre.51",

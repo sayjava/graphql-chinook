@@ -24,20 +24,21 @@
 #   title: String @named(as: "Title")
 # }
 
-type Country @readonly {
+type Country @readonly @named(as: "annual_economic_forecast") {
   id: ID @named(as: "LOCATION")
   name: String @named(as: "Country")
 
-  singleHit: [Forecast] @relation
+  forecast: [Forecast] @relation
 }
 
-type Forecast @readonly @datasource(name: "singleHit") {
+type Forecast @readonly @named(as: "annual_economic_forecast") {
   id: ID @named(as: "LOCATION")
-  code: String @named(as: "VARIABLE")
+  code: String @named(as: "VARIABLE_Description")
   description: String @named(as: "Variable")
   frequency: String @named(as: "Frequency")
   time: String @named(as: "TIME")
   value: Float @named(as: "Value")
+  edition: String @named(as: "EDITION")
 
   country: Country @relation @named(as: "LOCATION")
 }

@@ -15,8 +15,15 @@
       </el-table-column>
       <el-table-column
         sortable
-        prop="value"
-        label="unemployment"
+        prop="firstWave"
+        label="First Wave"
+        :formatter="formatValue"
+      >
+      </el-table-column>
+      <el-table-column
+        sortable
+        prop="secondWave"
+        label="Second Wave"
         :formatter="formatValue"
       >
       </el-table-column>
@@ -34,16 +41,34 @@ import "element-ui/lib/theme-chalk/index.css";
 Vue.use(ElementUI);
 
 const query = `{
-  unemployment: findForecasts(
-    where: { and: [{ code: { eq: "UNR" } }, { time: { eq: "2020-Q3" } }] }
+  single_hit_unr: findForecasts(
+    where: { 
+        and: [
+            { code: { eq: "UNR" } }, 
+            { edition: { eq: "EO107_1" } },
+            { time: { eq: "2020" } }
+        ] 
+    }
   ) {
-    value
+    firstWave:value
     description
     time
     country {
       name
       id
     }
+  }
+
+  double_hit_unr: findForecasts(
+    where: { 
+        and: [
+            { code: { eq: "UNR" } }, 
+            { edition: { eq: "EO107_2" } },
+            { time: { eq: "2020" } }
+        ] 
+    }
+  ) {
+    secondWave:value
   }
 }
 `;
@@ -66,7 +91,14 @@ export default {
       operationName: null,
     });
 
-    return { unemployment: data.data.unemployment };
+    const { double_hit_unr, single_hit_unr } = data.data;
+
+    // merge the unemployment numbers
+    const unemployment = double_hit_unr.map((entry, index) => {
+      return Object.assign({}, entry, single_hit_unr[index]);
+    });
+
+    return { unemployment };
   },
   data() {
     return {
@@ -75,8 +107,8 @@ export default {
     };
   },
   methods: {
-    formatValue(row) {
-      return `${Number(row.value).toFixed(2)}%`;
+    formatValue(row, col) {
+      return `${Number(row[col.property]).toFixed(2)}%`;
     },
   },
 };

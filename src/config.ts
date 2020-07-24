@@ -1,17 +1,16 @@
 import { generate } from "@skimah/api";
-import CSVSource from "@skimah/ds-csv";
+import { sqlite } from "@skimah/ds-sql";
 import { readFileSync } from "fs";
 import { GraphQLSchema } from "graphql";
 
 export default async (): Promise<GraphQLSchema> => {
   const typeDefs = readFileSync("schema.graphql").toString();
-  const singleHit = new CSVSource({ filepath: "data/single_hit_forecast.csv" });
+  const forecast = sqlite("data/oecd.db");
 
   const { schema } = await generate({
     typeDefs,
     sources: {
-      singleHit,
-      default: singleHit,
+      default: forecast,
     },
   });
 
