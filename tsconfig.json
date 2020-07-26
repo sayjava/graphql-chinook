@@ -1,15 +1,28 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": true,
+    "target": "ES2019",
+    "lib": [
+      "DOM",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
     "esModuleInterop": true,
-    "target": "ES2018",
-    "lib": ["ES2019"],
-    "baseUrl": ".",
-    "rootDir": "src",
-    "outDir": "lib"
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
-  "exclude": ["node_modules", "**/*.test.ts", "lib"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }

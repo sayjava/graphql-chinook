@@ -6,24 +6,37 @@
   "author": "Raymond Ottun <sayjava@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc"
+    "dev": "ts-node --project tsconfig.server.json src/server.ts",
+    "test": "jest",
+    "start": "NODE_ENV=production node lib/server.js",
+    "gcp-build": "yarn build",
+    "build": "yarn build:server && yarn build:client",
+    "build:server": "tsc --project tsconfig.server.json",
+    "build:client": "next build && next export"
   },
   "dependencies": {
+    "@ant-design/dark-theme": "^2.0.2",
+    "@ant-design/icons": "^4.2.1",
     "@skimah/api": "^0.3.3",
     "@skimah/ds-csv": "^0.1.1",
     "@skimah/ds-json": "^0.1.1",
     "@skimah/ds-sql": "^1.0.2",
-    "ant-design-vue": "^1.6.4",
+    "@types/node": "^14.0.26",
+    "antd": "^4.4.3",
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "element-ui": "^2.13.2",
     "express": "^4.17.1",
     "graphql": "^15.3.0",
-    "nuxt": "^2.13.3",
+    "next": "^9.4.4",
+    "next-images": "^1.4.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "sqlite3": "^5.0.0"
   },
   "devDependencies": {
+    "@types/react": "^16.9.43",
+    "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.51",
     "typescript": "^3.9.6"
   }

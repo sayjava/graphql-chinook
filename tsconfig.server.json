@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "lib": ["ES2019"],
+    "target": "ES2018",
+    "outDir": "lib",
+    "rootDir": "src",
+    "jsx": "react",
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "**/*.test.ts"],
+  "include": ["src/server.ts"]
+}

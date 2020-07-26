@@ -1,0 +1,27 @@
+service: oecd
+
+runtime: nodejs10
+
+handlers:
+  - url: /graphql(.*)
+    script: auto
+
+  - url: /(.*\.html)
+    static_files: out/\1
+    upload: out/(.*)
+
+  - url: /
+    static_files: out/index.html
+    upload: out/index.html
+
+  - url: /_next/static/(.*)
+    static_files: out/_next/static/\1
+    upload: out/_next/static/(.*)
+
+  - url: /_next/data/(.*)
+    static_files: out/_next/data/\1
+    upload: out/_next/data/(.*)
+
+  - url: /images/(.*)
+    static_files: out/images/\1
+    upload: out/images/(.*)

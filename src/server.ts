@@ -1,31 +1,30 @@
 import bodyParser from "body-parser";
-import { graphql } from "graphql";
-import { Nuxt, Builder } from "nuxt";
-
 import express from "express";
-import createConfig from "./config";
+import { graphql } from "graphql";
+import next from "next";
+import createConfig from "./schema";
 
 const port = process.env.PORT ?? 8080;
 const isDev = process.env.NODE_ENV !== "production";
 
-const createNuxt = (server) => {
-  const config = require("../nuxt.config.js");
-  const nuxt = new Nuxt(config);
+const createNext = async (server) => {
+  const app = next({ dev: isDev });
+  const handle = app.getRequestHandler();
+  await app.prepare();
 
   if (isDev) {
-    const builder = new Builder(nuxt);
-    builder.build();
+    server.all("*", (req, res) => {
+      return handle(req, res);
+    });
   }
-
-  server.use(nuxt.render);
-  return nuxt;
 };
 
 const createGraphql = async (server) => {
   const schema = await createConfig();
 
   server.use(bodyParser.json());
-  server.use("/graphql", async (req, res, next) => {
+
+  server.use("/graphql", async (req, res) => {
     if (req.method === "GET") {
       res.send("Please use POST");
       return;
@@ -48,7 +47,7 @@ export const create = async () => {
   const server = express();
 
   await createGraphql(server);
-  await createNuxt(server);
+  await createNext(server);
 
   return {
     start: () => (socket = server.listen(port)),
