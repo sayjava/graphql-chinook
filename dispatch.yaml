@@ -1,0 +1,3 @@
+dispatch:
+  - url: "oecd.raysca.dev/*"
+    service: oecd
