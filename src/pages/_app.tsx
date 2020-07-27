@@ -1,6 +1,6 @@
 import { Layout } from "antd";
 import "antd/dist/antd.css";
-import "antd/dist/antd.dark.css";
+// import "antd/dist/antd.dark.css";
 
 const { Header, Footer, Content } = Layout;
 
