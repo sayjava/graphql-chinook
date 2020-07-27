@@ -16,5 +16,4 @@
 # Node.js dependencies:
 node_modules/
 .next
-out
 lib
