@@ -12,7 +12,8 @@
     "gcp-build": "yarn build",
     "build": "yarn build:server && yarn build:client",
     "build:server": "tsc --project tsconfig.server.json",
-    "build:client": "next build && next export"
+    "build:client": "next build && next export",
+    "deploy": "gcloud -q app deploy --promote"
   },
   "dependencies": {
     "@ant-design/dark-theme": "^2.0.2",
